@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     // alignSelf: 'flex-start',
     // marginLeft: 25,
-    // marginTop: verticalScale(5),
     // fontFamily: Font.Lato700,
+    marginBottom: scale(10),
     marginHorizontal: scale(8),
   },
 })

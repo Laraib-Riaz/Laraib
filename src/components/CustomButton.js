@@ -1,79 +1,64 @@
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
-import React from 'react'
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import Icons from 'react-native-vector-icons/FontAwesome5'
-// import ICONS from 'react-native-vector-icons/FontAwesome5Brands'
+import React from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import {Font} from '../assets/fonts/PoppinsFont';
+import {Color} from '../utils/Colors';
+// import Color from '../Assets/Color';
+const w = Dimensions.get('window').width;
+const h = Dimensions.get('window').height;
 
-const CustomButton = ({
-  text,
-  onPress,
-  stylz,
-  IconName,
-  Iconsize,
-  IconColor,
-  BGColor,
-  Iconname,
-  IconSize,
-  Iconcolor,
-  CircleStyle,
-  Textalig,
-  restyle,
-  Iconstyle,
-}) => {
+const CustomButton = props => {
   return (
-    <View style={[styles.ButtonContainer, stylz]}>
+    <View
+      style={[
+        styles.ButtonContainer,
+        props.stylz,
+        props.ButtonContainerRestytle,
+      ]}>
       <TouchableOpacity
-        onPress={onPress}
-        style={[styles.ButtonStyles, BGColor, restyle]}>
-        <Text style={[styles.ButtonText, Textalig]}>{text}</Text>
-        <View style={[styles.Circle, CircleStyle]}>
-          <Icon
-            style={[Iconstyle]}
-            name={IconName}
-            size={Iconsize}
-            color={IconColor}
-          />
-        </View>
-        <Icons name={Iconname} size={IconSize} color={Iconcolor} />
+        onPress={props.onPress}
+        style={[
+          styles.ButtonStyles,
+          props.BGColor,
+          props.restyle,
+          {
+            backgroundColor: Color.Main,
+          },
+        ]}>
+        <Text style={[styles.ButtonText, props.Textalig]}>{props.text}</Text>
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   ButtonContainer: {
-    height: scale(40),
+    height: verticalScale(40),
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: verticalScale(15),
+    // marginVertical: verticalScale(15),
   },
   ButtonStyles: {
-    height: scale(60),
-    width: '90%',
-    backgroundColor: '#3E57A7',
+    height: w >= 768 && h >= 1024 ? verticalScale(35) : verticalScale(50),
+    width: '100%',
+    backgroundColor: 'rgba(56, 125, 229, 1)',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: moderateScale(14),
+    borderRadius: w >= 768 && h >= 1024 ? scale(8) : scale(18),
     flexDirection: 'row',
-    textAlign: 'center',
   },
   ButtonText: {
-    color: '#FFFF',
-    textTransform: 'uppercase',
-    letterSpacing: moderateScale(1),
-    fontSize: moderateScale(16),
-    fontWeight: '600',
-    textAlign: 'center',
-    paddingHorizontal: scale(5),
+    color: 'white',
+    // textTransform: 'capitalize',
+    fontSize: w >= 768 && h >= 1024 ? scale(9) : scale(16),
+    fontFamily: Font.Poppins600,
   },
-  BGColor: {
-    backgroundColor: 'green',
-  },
-  Circle: {
-    height: scale(30),
-    width: scale(30),
-  },
-})
+});
 
-export default CustomButton
+export default CustomButton;
